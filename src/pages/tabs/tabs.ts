@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-
+import { NavController } from 'ionic-angular';
 import { AboutPage } from '../about/about';
-import { ContactPage } from '../contact/contact';
+import { EvenPage } from '../even/even';
 import { HomePage } from '../home/home';
 
 @Component({
@@ -9,11 +9,11 @@ import { HomePage } from '../home/home';
 })
 export class TabsPage {
 
-  tab1Root = HomePage;
+  tab1Root = EvenPage;
   tab2Root = AboutPage;
-  tab3Root = ContactPage;
+  tab3Root = HomePage;
 
-  constructor() {
-
+  constructor(public navCtrl: NavController) {
+    //this.navCtrl.push(MenuPage);
   }
 }

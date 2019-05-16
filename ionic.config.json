@@ -1,5 +1,7 @@
 {
   "name": "PortesOuvVIII",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "ionic-angular"
 }

@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-navbar color="iut-green">
+      <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button>
+    <ion-title>
+      Events
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid no-padding>
+    <ion-row>
+      <ion-col *ngFor="let item of items" col-6>
+          <ion-card div class="card" (click)="expandItem(item)">
+              <div *ngIf="item.expanded ==false"><img src="assets/header.png"/></div>
+              <div *ngIf="item.expanded ==true"><img src="assets/header_side.png"/></div>
+              <div class="card-title">{{item.title}}</div>
+              <div class="card-subtitle">
+                <app-test expandHeight="500px" [expanded]="item.expanded">
+                  <p>{{item.note}}</p>
+                </app-test>
+              </div>
+          </ion-card>
+          
+
+
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

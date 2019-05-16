@@ -1,17 +1,45 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>Home</ion-title>
-  </ion-navbar>
+  <ion-toolbar color="iut-green">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      IUT de Nantes
+    </ion-title>
+  </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+<ion-content>
+  <ion-card class="welcome-card">
+    <ion-img src="/assets/header.png"></ion-img>
+    <div class="card-head">Portes Ouvertes</div>
+  </ion-card>
+  <!--
+    <ion-card (click)="expandItem(item)" *ngFor="let item of items">
+      <ion-card-header>
+        <ion-card-title>{{item.title}}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        
+        <app-expandable expandHeight="500px" [expanded]="item.expanded">
+          <p>{{item.content}}</p>
+        </app-expandable>
+      
+      
+
+      </ion-card-content>
+    </ion-card>
+
+    -->
+
+  <ion-card (click)="expandItem(item)" *ngFor="let item of items">
+    <ion-card-header>
+      <ion-card-title>{{ item.title }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <app-test expandHeight="500px" [expanded]="item.expanded">
+        <p>{{ item.content }}</p>
+      </app-test>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

@@ -1,19 +1,31 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { AboutPage } from '../about/about';
 import { EvenPage } from '../even/even';
-import { HomePage } from '../home/home';
+import { App, AlertController  } from 'ionic-angular';
+import { Globals } from "../../app/app.config";
+import { Tabs } from "ionic-angular";
 
 @Component({
   templateUrl: 'tabs.html'
 })
 export class TabsPage {
-
+  @ViewChild("tabs") tabs: Tabs;
   tab1Root = EvenPage;
   tab2Root = AboutPage;
-  tab3Root = HomePage;
+  myIndex: number
+  
 
-  constructor(public navCtrl: NavController) {
-    //this.navCtrl.push(MenuPage);
+  constructor(
+    public navCtrl: NavController, 
+    public alertCtrl: AlertController,
+    public app: App,
+    ) {
+    
   }
+
+  ionViewDidEnter() {
+    Globals.tabs = this.tabs;
+}
+  
 }

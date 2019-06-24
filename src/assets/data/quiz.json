@@ -1,0 +1,39 @@
+{
+	"questions": [
+
+		{
+			"flashCardFront": "2+2",
+			"flashCardBack": "4",
+			"flashCardFlipped": false,
+			"questionText": "Select an answer",
+			"answers": [
+				{"answer": "Helicopter", "correct": false, "selected": false, "disabled": false},
+				{"answer": "4", "correct": true, "selected": false, "disabled": false},
+				{"answer": "Truck", "correct": false, "selected": false, "disabled": false}
+			]
+		},
+		{
+			"flashCardFront": "4+2",
+			"flashCardBack": "6",
+			"flashCardFlipped": false,
+			"questionText": "Select an answer",
+			"answers": [
+				{"answer": "6", "correct": true, "selected": false, "disabled": false},
+				{"answer": "Pepsi", "correct": false, "selected": false, "disabled": false},
+				{"answer": "Coca-cola", "correct": false, "selected": false, "disabled": false}
+			]
+		},
+		{
+			"flashCardFront": "6+2",
+			"flashCardBack": "8",
+			"flashCardFlipped": false,
+			"questionText": "Select an answer",
+			"answers": [
+				{"answer": "Pomme", "correct": false, "selected": false, "disabled": false},
+				{"answer": "Orange", "correct": false, "selected": false, "disabled": false},
+				{"answer": "8", "correct": true, "selected": false, "disabled": false}
+			]
+		}
+
+	]
+}

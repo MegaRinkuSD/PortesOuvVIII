@@ -1,0 +1,7 @@
+
+- Take building photos
+
+
+
+
+ionic cordova run android --target=08f21e55 --device -l --debug -c

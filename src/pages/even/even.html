@@ -1,33 +1,103 @@
 <ion-header>
   <ion-navbar color="iut-green">
-      <button ion-button menuToggle>
+      <!-- <button ion-button menuToggle>
           <ion-icon name="menu"></ion-icon>
-        </button>
+        </button> -->
     <ion-title>
-      Events
+      Accueil
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
   <ion-grid no-padding>
+      <ion-item-divider >
+          <ion-label color="dark"> 
+            Conferences
+          </ion-label>
+        </ion-item-divider>                                                                   
     <ion-row>
-      <ion-col *ngFor="let item of items" col-6>
-          <ion-card div class="card" (click)="expandItem(item)">
-              <div *ngIf="item.expanded ==false"><img src="assets/header.png"/></div>
-              <div *ngIf="item.expanded ==true"><img src="assets/header_side.png"/></div>
-              <div class="card-title">{{item.title}}</div>
-              <div class="card-subtitle">
-                <app-test expandHeight="500px" [expanded]="item.expanded">
-                  <p>{{item.note}}</p>
-                </app-test>
-              </div>
-          </ion-card>
+      <ion-col *ngFor="let item of items" col-6 col-lg-4>
           
-
-
-
+            <ion-card div class="card" (click)="openDetail(item.title)">
+              <div><img src="assets/imgs/conferences/{{item.img}}"/></div>
+              <div class="card-title">{{item.title}}</div>
+            </ion-card>
       </ion-col>
     </ion-row>
+    
+      <ion-item-divider>
+          <ion-label color="dark">
+            Extras
+          </ion-label>
+        </ion-item-divider>
+        <ion-row>
+      <ion-col col-6 col-lg-4>
+        <ion-card div class="card" (click)="openQuiz()" >
+            <div><img src="assets/imgs/extras/q_header.png"/></div>
+            <div class="card-title">QUIZ</div>
+        </ion-card>
+    </ion-col>
+
+    <ion-col col-6 col-lg-4 *ngIf="isTablet">
+        <ion-card div class="card" (click)="openQR()" >
+            <div><img src="assets/imgs/extras/qr_header.png"/></div>
+            <div class="card-title">Scanner QR</div>
+        </ion-card>
+    </ion-col>
+
+<ion-col col-6 col-lg-4>
+        <ion-card div class="card" (click)="openWithSystemBrowser('https://edt.univ-nantes.fr/iut_nantes/g3545.html')" >
+            <div><img src="assets/imgs/extras/edt_header.png"/></div>
+            <div class="card-title">Emploi du temps</div>
+        </ion-card>
+    </ion-col>
+
+    <ion-col col-6 col-lg-4>
+        <ion-card div class="card" (click)="openWithSystemBrowser('https://iutnantes.univ-nantes.fr/accueil/calendrier-universitaire-2019-2020-iut-de-nantes-rentree-vacances-996983.kjsp?RH=INSC')" >
+            <div><img src="assets/imgs/extras/c_header.png"/></div>
+            <div class="card-title">Calendrier universitaire</div>
+        </ion-card>
+    </ion-col>
+  </ion-row>
+    <ion-item-divider>
+        <ion-label color="dark">
+          Reseaux
+        </ion-label>
+      </ion-item-divider>
+      <ion-row>
+      <ion-col col-6 col-lg-4>
+        <ion-card div class="card" (click)="openWithSystemBrowser('http://www.facebook.com/iutdenantes/')" >
+            <div><img src="assets/imgs/extras/f_header.png"/></div>
+            <div class="card-title">Facebook</div>
+
+        </ion-card>
+    </ion-col>
+
+
+    <ion-col col-6 col-lg-4>
+      <ion-card div class="card" (click)="openWithSystemBrowser('http://www.youtube.com/user/iutnantes')" >
+          <div><img src="assets/imgs/extras/y_header.png"/></div>
+          <div class="card-title">YouTube</div>
+      </ion-card>
+    </ion-col>
+    
+      <ion-col col-6 col-lg-4>
+        <ion-card div class="card" (click)="openWithSystemBrowser('https://twitter.com/IUTNantes')" >
+            <div><img src="assets/imgs/extras/t_header.png"/></div>
+            <div class="card-title">Twitter</div>
+        </ion-card>
+      </ion-col>
+
+        <ion-col col-6 col-lg-4>
+          <ion-card div class="card" (click)="openWithSystemBrowser('https://www.instagram.com/iutnantes/')" >
+              <div><img src="assets/imgs/extras/i_header.png"/></div>
+              <div class="card-title">Instagram</div>
+          </ion-card>
+  </ion-col>
+
+    </ion-row>
   </ion-grid>
+
+  
 </ion-content>

@@ -1,0 +1,65 @@
+.ios, .md {
+    ion-content {
+        &.content {
+            div.scroll-content {
+                
+                overflow: auto
+                
+            }
+        }
+    }
+
+    page-quiz {
+
+        ion-slide {
+            align-items: flex-start;
+            .slide-zoom{
+                //width: 50%;
+            }
+            
+        }
+
+        ion-item {
+            margin-bottom: 5px;
+            font-size: 1.2em;
+            background-color: map-get($colors, iut-green);
+        }
+
+        flash-card {
+            color: #000;
+            
+
+            img {
+                width: 100%;
+                height: auto;
+            }
+        }
+
+        .start-slide {
+            justify-content: center;
+            align-items: center;
+
+            button {
+                font-size: 1.3em;
+                font-weight: bold;
+            }
+        }
+
+    }
+
+    #divElement{
+        position: absolute;
+        top: 50%;
+        left: 25%;
+        margin-top: 25%;
+        margin-left: -50px;
+        width: 65%;
+        height: 100%;
+    }
+    .centrate{
+        position: absolute;
+        
+        left: 25%;
+    }
+
+}

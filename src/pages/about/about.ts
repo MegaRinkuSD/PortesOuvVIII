@@ -1,102 +1,104 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { Platform, NavController } from 'ionic-angular';
-import {
-  GoogleMaps,
-  GoogleMap,
-  GoogleMapsEvent,
-  LatLng,
-  MarkerOptions,
-  Marker,
-  Environment,
-  LocationService,
-  MyLocation,
-  GoogleMapPreferenceOptions,
-  GoogleMapOptions,
-  ILatLng
-} from "@ionic-native/google-maps";
+import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { HttpProvider } from "../../providers/http/http";
+import { FormsModule } from "@angular/forms";
+
+import { NavController, ModalController } from "ionic-angular";
+
+import leaflet from 'leaflet';
+import { BackbuttonService } from "../../services/backbutton.service";
+import { EN_TAB_PAGES } from "../../app/app.config";
+ 
 
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule
-  ],
-  
+  imports: [CommonModule, FormsModule],
+
   declarations: [AboutPage]
 })
-
 @Component({
-  selector: 'page-about',
-  templateUrl: 'about.html'
+  selector: "page-about",
+  templateUrl: "about.html"
 })
 export class AboutPage implements OnInit {
 
-  @ViewChild('map') element;
+  @ViewChild('map') mapContainer: ElementRef;
+  modalControl: ModalController;
+  map: any;
+  public markers: any;
+  constructor(
 
-  constructor(public googleMaps: GoogleMaps, public plt: Platform, public navCtrl: NavController) {
+    public navCtrl: NavController,
+    private httpProvider: HttpProvider,
+    private backbuttonService: BackbuttonService, 
+    public modalCtrl: ModalController,
+  ) {}
+   ngOnInit() {}
 
+  ionViewWillEnter() {
+    this.backbuttonService.pushPage(EN_TAB_PAGES.EN_TP_CARTE, this.navCtrl);
   }
 
-  ngOnInit() {
+ public openModal(title, note, img){
+    let modal = this.modalCtrl.create('ModalPage', {title: title, note: note, img: img})
+    modal.present()
   }
 
 
-  ngAfterViewInit() {
-    this.plt.ready().then(() => {
-      this.initMap();
-    })
-  }
-
-  map: GoogleMap
+ionViewDidLoad() {
+  this.loadmap();
+}
 
 
-  initMap() {
-
-    Environment.setEnv({
-      'API_KEY_FOR_BROWSER_RELEASE': 'AIzaSyAHyVLfbYQ_O0jR888-wD8srnG5AKGskoI',
-      'API_KEY_FOR_BROWSER_DEBUG': 'AIzaSyAHyVLfbYQ_O0jR888-wD8srnG5AKGskoI'
-    });
-
-    let positionI: ILatLng = {
-      lat: 47.224506,
-      lng: -1.545876
-    };
-
-    let positionII: ILatLng = {
-      lat: 47.222390,
-      lng: -1.543960
-    };
+loadmap() {
+  this.map = leaflet.map("map").setView([47.223163, -1.544621], 18);
+  leaflet.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attributions: 'www.tphangout.com',
+    maxZoom: 18
+  }).addTo(this.map);
 
 
-    let bounds: ILatLng[] = [positionI, positionII];
 
-    let boundsOptions: GoogleMapPreferenceOptions = {
-      gestureBounds: bounds
-    }
+  this.httpProvider.getMarkerData().subscribe(
+            result => {
+              console.log("READING DARA");
+              this.markers = result;
+              console.log("Success : " + this.markers.marqueurs[0].title);
+              this.markers = this.markers.marqueurs;
+              
     
-    this.map = GoogleMaps.create(this.element.nativeElement, boundsOptions);
+              for (let item of this.markers) {
+                var marker = leaflet.marker([item.latitude, item.longitude]).addTo(this.map)
+                .bindTooltip(item.title, {permanent: true, interactive: true})
+                marker.on('click', (e)=> {
+              var modal = this.openModal(item.title, item.note, item.img);
+              });
+                  
+              }
+            },
+            err => {
+              console.error("Error : " + err);
+            },
+            () => {
+              console.log("getData completed");
+            }
+          );
 
-    LocationService.getMyLocation().then((myLocation: MyLocation) => {
+  
+}
 
-      this.map.one(GoogleMapsEvent.MAP_READY).then((data: any) => {
+centerCam(){
+  this.map.setView([47.223163, -1.544621], 18);
+}
 
-        let coordinates: LatLng = new LatLng(myLocation.latLng.lat, myLocation.latLng.lng);
 
-        let camera = {
-          target: coordinates,
-          zoom: 25
-        }
 
-        this.map.animateCamera(camera)
-        this.map.setMyLocationEnabled(true)
-        this.map.setMyLocationButtonEnabled(true)
-      })
 
-    });
 
-  }
+
+
+
+
 
 }

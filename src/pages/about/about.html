@@ -1,16 +1,26 @@
+
 <ion-header>
   <ion-navbar color="iut-green">
-  <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
+ 
     <ion-title>
-      About
+      Carte
     </ion-title>
   </ion-navbar>
 </ion-header>
 
-<body>
+<ion-content>
 
-  <div #map style="height:94%;"></div>
+    <div id="map" style="width:100%; height:100%;"></div>
+
+    <div class="action-buttons">
+      <button ion-button (click)="centerCam()" color="iut-blue">
+      Revenir a l'IUT
+    </button>
+    </div>
+    
+
+</ion-content>
+
+    
   
-</body>
+  

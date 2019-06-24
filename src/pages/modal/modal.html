@@ -1,0 +1,35 @@
+<ion-content padding> 
+<ion-fab top right>
+      <button ion-fab (click)="close()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-fab>
+
+      <ion-title>
+        {{title}}
+      </ion-title>
+    
+    <br>
+      <br>
+      <div>
+         <ion-card *ngIf="plat==browser">
+        <img class="responsive" src="assets/imgs/carte/{{img}}"/>
+        <ion-card-content>
+          {{note}}
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card *ngIf="plat!=browser">
+          <img src="assets/imgs/carte/{{img}}"/>
+          <ion-card-content>
+            {{note}}
+          </ion-card-content>
+        </ion-card>
+
+
+      </div>
+     
+      
+
+      
+</ion-content>

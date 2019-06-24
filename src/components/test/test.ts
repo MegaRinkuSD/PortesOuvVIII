@@ -9,7 +9,6 @@ import { Component, AfterViewInit, Input, ViewChild, ElementRef, Renderer2 } fro
 @Component({
   selector: 'app-test',
   templateUrl: 'test.html',
-  styleUrls: ['/src/components/test/test.scss']
 })
 export class TestComponent implements AfterViewInit {
   @ViewChild("expandWrapper", { read: ElementRef }) expandWrapper: ElementRef;
